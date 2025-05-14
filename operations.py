@@ -9,8 +9,11 @@ class VideojuegoBase(BaseModel):
 class VideojuegoCreate(VideojuegoBase):
     pass
 
+class VideojuegoUpdate(VideojuegoBase):
+    pass
+
 class VideojuegoOut(VideojuegoBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
