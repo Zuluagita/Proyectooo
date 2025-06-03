@@ -2,78 +2,77 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Registrar Videojuego - GamingDex</title>
+  <title>Buscar Videojuegos - GamingDex</title>
+
   <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     body, button, input, select, textarea, .nes-text, .nes-btn {
       font-family: 'Press Start 2P', cursive;
       font-size: 12px;
     }
+
     body {
       background-color: #212121;
       color: #fff;
       padding: 2rem;
     }
+
     main {
       max-width: 880px;
       margin: auto;
     }
+
     .nes-container {
       margin-bottom: 2rem;
       box-shadow: 6px 6px 0 #000;
     }
-    .nes-btn:hover {
-      transform: scale(1.05);
-      transition: transform 0.2s ease-in-out;
+
+    .tarjeta {
+      margin-bottom: 1.5rem;
+      background-color: white;
+      color: black;
     }
-    label {
-      margin-top: 1rem;
-    }
+
     .volver {
       text-align: center;
       margin-top: 2rem;
+    }
+
+    .nes-btn:hover {
+      transform: scale(1.05);
+      transition: transform 0.2s ease-in-out;
     }
   </style>
 </head>
 <body>
   <main>
     <section class="nes-container with-title is-dark">
-      <h1 class="title">➕ Registrar Videojuego</h1>
-      <form id="form-videojuego">
-        <input type="hidden" id="videojuego_id">
+      <h1 class="title">🔍 Buscar Videojuegos</h1>
+      <form id="form-busqueda" class="nes-container is-rounded">
         <div class="nes-field">
           <label for="titulo">🎮 Título</label>
-          <input type="text" id="titulo" class="nes-input" required>
+          <input type="text" id="titulo" class="nes-input">
         </div>
         <div class="nes-field">
           <label for="genero">🧪 Género</label>
           <input type="text" id="genero" class="nes-input">
         </div>
-        <div class="nes-field">
-          <label for="precio">💲 Precio</label>
-          <input type="number" id="precio" class="nes-input" step="0.01">
-        </div>
-        <div class="nes-field">
-          <label for="calificacion">⭐ Calificación</label>
-          <input type="number" id="calificacion" class="nes-input" step="0.1" max="10">
-        </div>
-        <div class="nes-field">
-          <label for="desarrollador_id">🏢 Desarrollador</label>
-          <div class="nes-select">
-            <select id="desarrollador_id" required>
-              <option value="">Cargando...</option>
-            </select>
-          </div>
-        </div>
-        <button type="submit" class="nes-btn is-success" style="margin-top: 1.5rem;">Guardar</button>
+        <button type="submit" class="nes-btn is-primary" style="margin-top: 1rem;">Buscar</button>
       </form>
+
+      <div id="resultados">
+        <!-- Aquí se mostrarán los resultados -->
+      </div>
     </section>
+
     <div class="volver">
       <a href="/" class="nes-btn is-warning">🏠 Volver al Inicio</a>
     </div>
   </main>
-  <script src="/static/js/registrar.js"></script>
+
+  <script src="/static/js/buscar.js"></script>
 </body>
 </html>

@@ -2,78 +2,90 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Registrar Videojuego - GamingDex</title>
+  <title>Gestionar Desarrolladores - GamingDex</title>
+
   <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     body, button, input, select, textarea, .nes-text, .nes-btn {
       font-family: 'Press Start 2P', cursive;
       font-size: 12px;
     }
+
     body {
       background-color: #212121;
       color: #fff;
       padding: 2rem;
     }
+
     main {
       max-width: 880px;
       margin: auto;
     }
+
     .nes-container {
       margin-bottom: 2rem;
       box-shadow: 6px 6px 0 #000;
     }
+
     .nes-btn:hover {
       transform: scale(1.05);
       transition: transform 0.2s ease-in-out;
     }
-    label {
-      margin-top: 1rem;
-    }
+
     .volver {
       text-align: center;
       margin-top: 2rem;
+    }
+
+    .tarjeta {
+      background-color: white;
+      color: black;
+      margin-bottom: 1.5rem;
     }
   </style>
 </head>
 <body>
   <main>
     <section class="nes-container with-title is-dark">
-      <h1 class="title">➕ Registrar Videojuego</h1>
-      <form id="form-videojuego">
-        <input type="hidden" id="videojuego_id">
+      <h1 class="title">🏢 Gestionar Desarrolladores</h1>
+
+      <form id="form-desarrollador" class="nes-container is-rounded" style="margin-bottom: 2rem;">
         <div class="nes-field">
-          <label for="titulo">🎮 Título</label>
-          <input type="text" id="titulo" class="nes-input" required>
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" class="nes-input" required>
         </div>
+
         <div class="nes-field">
-          <label for="genero">🧪 Género</label>
-          <input type="text" id="genero" class="nes-input">
+          <label for="tipo">Tipo</label>
+          <input type="text" id="tipo" class="nes-input" placeholder="Ej: Independiente o Corporativo" required>
         </div>
+
         <div class="nes-field">
-          <label for="precio">💲 Precio</label>
-          <input type="number" id="precio" class="nes-input" step="0.01">
+          <label for="pais">País</label>
+          <input type="text" id="pais" class="nes-input">
         </div>
+
         <div class="nes-field">
-          <label for="calificacion">⭐ Calificación</label>
-          <input type="number" id="calificacion" class="nes-input" step="0.1" max="10">
+          <label for="fundacion">Año de fundación</label>
+          <input type="number" id="fundacion" class="nes-input">
         </div>
-        <div class="nes-field">
-          <label for="desarrollador_id">🏢 Desarrollador</label>
-          <div class="nes-select">
-            <select id="desarrollador_id" required>
-              <option value="">Cargando...</option>
-            </select>
-          </div>
-        </div>
-        <button type="submit" class="nes-btn is-success" style="margin-top: 1.5rem;">Guardar</button>
+
+        <button type="submit" class="nes-btn is-success" style="margin-top: 1rem;">Registrar Desarrollador</button>
       </form>
+
+      <div id="lista-desarrolladores">
+        <!-- Se cargan desde JS -->
+      </div>
     </section>
+
     <div class="volver">
       <a href="/" class="nes-btn is-warning">🏠 Volver al Inicio</a>
     </div>
   </main>
-  <script src="/static/js/registrar.js"></script>
+
+  <script src="/static/js/desarrolladores.js"></script>
 </body>
 </html>

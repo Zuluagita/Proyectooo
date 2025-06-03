@@ -48,10 +48,10 @@ def ver_videojuegos():
 def registrar():
     return FileResponse(os.path.join(static_dir, "registrar.html"))
 
-# @app.get("/buscar", response_class=FileResponse)
-# def buscar():
-#     return FileResponse(os.path.join(static_dir, "buscar.html"))
+@app.get("/buscar", response_class=FileResponse)
+def buscar():
+     return FileResponse(os.path.join(static_dir, "buscar.html"))
 
-# @app.get("/desarrolladores", response_class=FileResponse)
-# def gestionar_dev():
-#     return FileResponse(os.path.join(static_dir, "desarrolladores.html"))
+@app.get("/desarrolladores", response_class=FileResponse)
+def gestionar_dev():
+    return FileResponse(os.path.join(static_dir, "desarrolladores.html"))

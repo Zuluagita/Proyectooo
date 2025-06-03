@@ -21,11 +21,17 @@ def listar_videojuegos(
     db: Session = Depends(get_db)
 ):
     query = db.query(Videojuego).options(joinedload(Videojuego.desarrollador))
+    query = query.filter(Videojuego.estado == True)  # ✅ Mostrar solo activos
     if titulo:
         query = query.filter(Videojuego.titulo.ilike(f"%{titulo}%"))
     if genero:
         query = query.filter(Videojuego.genero.ilike(f"%{genero}%"))
     return query.all()
+@router.get("/inactivos", response_model=list[VideojuegoOut])
+def listar_inactivos(db: Session = Depends(get_db)):
+    return db.query(Videojuego).options(joinedload(Videojuego.desarrollador))\
+             .filter(Videojuego.estado == False).all()
+
 
 @router.get("/{videojuego_id}", response_model=VideojuegoOut)
 def obtener_videojuego(videojuego_id: int, db: Session = Depends(get_db)):
@@ -50,5 +56,14 @@ def eliminar_videojuego(videojuego_id: int, db: Session = Depends(get_db)):
     juego = db.query(Videojuego).get(videojuego_id)
     if not juego:
         raise HTTPException(status_code=404, detail="Videojuego no encontrado")
-    db.delete(juego)
+    juego.estado = False  # ✅ Desactivación lógica
     db.commit()
+@router.patch("/{videojuego_id}/desactivar")
+def desactivar_videojuego(videojuego_id: int, db: Session = Depends(get_db)):
+    juego = db.query(Videojuego).get(videojuego_id)
+    if not juego:
+        raise HTTPException(status_code=404, detail="Videojuego no encontrado")
+    juego.estado = False
+    db.commit()
+    return {"mensaje": "Videojuego desactivado correctamente"}
+
