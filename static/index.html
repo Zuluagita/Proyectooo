@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inicio - GamingDex NES</title>
+
+  <!-- NES.css -->
+  <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet">
+  <!-- Fuente Retro -->
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body, button, input, select, textarea, .nes-text, .nes-btn {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    body {
+      background-color: #212121;
+      color: #fff;
+      padding: 2rem;
+    }
+
+    main {
+      max-width: 880px;
+      margin: auto;
+    }
+
+    .nes-container {
+      margin-bottom: 2rem;
+      box-shadow: 6px 6px 0 #000;
+    }
+
+    .title {
+      text-align: center;
+    }
+
+    .menu-opciones {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .menu-opciones a {
+      text-align: center;
+      padding: 0.8rem;
+      font-size: 12px;
+    }
+
+    .nes-icon {
+      vertical-align: middle;
+      margin-right: 0.5rem;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 10px;
+      color: #aaa;
+      margin-top: 3rem;
+    }
+
+    .nes-btn:hover {
+      transform: scale(1.05);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .sobre-mi {
+      background-color: #2b2b2b;
+      color: #e0e0e0;
+    }
+
+    .descripcion {
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .avatar-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .avatar-section img {
+      image-rendering: pixelated;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- TÍTULO -->
+    <section class="nes-container with-title is-dark">
+      <h1 class="title">🎮 GAMINGDEX</h1>
+      <p class="nes-text">
+        Bienvenido al proyecto integrador donde podrás registrar, buscar y conocer videojuegos con el toquesito de la NES clásica.
+      </p>
+
+      <div class="menu-opciones">
+        <a href="/registrar" class="nes-btn is-success">
+          <i class="nes-icon star is-small"></i> Registrar Videojuego
+        </a>
+        <a href="/videojuegos" class="nes-btn is-primary">
+          <i class="nes-icon trophy is-small"></i> Ver Lista Completa
+        </a>
+        <a href="/buscar" class="nes-btn is-warning">
+          <i class="nes-icon coin is-small"></i> Buscar Videojuegos
+        </a>
+        <a href="/desarrolladores" class="nes-btn is-error">
+          <i class="nes-icon like is-small"></i> Gestionar Desarrolladores
+        </a>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section class="nes-container is-dark sobre-mi">
+      <h2 style="margin-bottom: 1rem;">
+        <i class="nes-icon heart is-small"></i> Sobre mi
+      </h2>
+      <div class="avatar-section">
+        <img src="https://th.bing.com/th/id/OIP.qoo8ySFCCd5kLe2aq60uxgHaHa?r=0&rs=1&pid=ImgDetMain" alt="avatar">
+        <div class="descripcion">
+          <p>¡Hola! Soy el desarrollador de GamingDex.</p>
+          <p>Este proyecto fue construido usando <strong>FastAPI</strong> y <strong>NES.css</strong> como un homenaje a la era de los 8-bits.</p>
+          <p>Mi objetivo fue unir lo técnico con lo visual, y hacer que los formularios CRUD nunca más sean aburridos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PIE -->
+    <p class="footer">Desarrollado con ❤️ usando NES.css — 2025</p>
+  </main>
+</body>
+</html>

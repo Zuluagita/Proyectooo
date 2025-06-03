@@ -1,6 +1,5 @@
-
 from fastapi import APIRouter, HTTPException, Depends, Query
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from database import get_db
 from models import Videojuego
 from operations import VideojuegoCreate, VideojuegoUpdate, VideojuegoOut
@@ -21,7 +20,7 @@ def listar_videojuegos(
     genero: str | None = Query(None),
     db: Session = Depends(get_db)
 ):
-    query = db.query(Videojuego)
+    query = db.query(Videojuego).options(joinedload(Videojuego.desarrollador))
     if titulo:
         query = query.filter(Videojuego.titulo.ilike(f"%{titulo}%"))
     if genero:
@@ -30,7 +29,7 @@ def listar_videojuegos(
 
 @router.get("/{videojuego_id}", response_model=VideojuegoOut)
 def obtener_videojuego(videojuego_id: int, db: Session = Depends(get_db)):
-    juego = db.query(Videojuego).get(videojuego_id)
+    juego = db.query(Videojuego).options(joinedload(Videojuego.desarrollador)).get(videojuego_id)
     if not juego:
         raise HTTPException(status_code=404, detail="Videojuego no encontrado")
     return juego

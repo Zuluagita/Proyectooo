@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Videojuegos - GamingDex</title>
+
+  <!-- NES.css y Fuente retro -->
+  <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body, button, input, select, textarea, .nes-text, .nes-btn {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
+    }
+
+    body {
+      background-color: #212121;
+      color: #fff;
+      padding: 2rem;
+    }
+
+    main {
+      max-width: 880px;
+      margin: auto;
+    }
+
+    .nes-container {
+      margin-bottom: 2rem;
+      box-shadow: 6px 6px 0 #000;
+    }
+
+    .volver {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .titulo {
+      text-align: center;
+    }
+
+    .tarjeta {
+      margin-bottom: 1.5rem;
+      background-color: white;
+      color: black;
+    }
+
+    .nes-btn:hover {
+      transform: scale(1.05);
+      transition: transform 0.2s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="nes-container with-title is-dark">
+      <h1 class="title">📋 Lista de Videojuegos</h1>
+      <p class="nes-text">
+        Aquí puedes ver todos los videojuegos registrados hasta ahora.
+      </p>
+
+      <div id="lista-videojuegos">
+        <!-- Aquí se cargan las tarjetas de videojuegos desde JS -->
+      </div>
+    </section>
+
+    <div class="volver">
+      <a href="/" class="nes-btn is-warning">
+        🏠 Volver al Inicio
+      </a>
+    </div>
+  </main>
+
+  <script src="/static/js/videojuegos.js"></script>
+</body>
+</html>

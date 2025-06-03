@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+# ----- MODELO VIDEOJUEGO -----
 class VideojuegoBase(BaseModel):
     titulo: str
     genero: str | None = None
@@ -13,12 +14,25 @@ class VideojuegoCreate(VideojuegoBase):
 class VideojuegoUpdate(VideojuegoBase):
     pass
 
-class VideojuegoOut(VideojuegoBase):
+# 👇 Se agrega desarrollador anidado para que se incluya el nombre
+class DesarrolladorOut(BaseModel):
     id: int
+    nombre: str
+    tipo: str
+    pais: str | None = None
+    fundacion: int | None = None
 
     class Config:
         from_attributes = True
 
+class VideojuegoOut(VideojuegoBase):
+    id: int
+    desarrollador: DesarrolladorOut | None = None
+
+    class Config:
+        from_attributes = True
+
+# ----- MODELO DESARROLLADOR -----
 class DesarrolladorBase(BaseModel):
     nombre: str
     tipo: str
@@ -30,9 +44,3 @@ class DesarrolladorCreate(DesarrolladorBase):
 
 class DesarrolladorUpdate(DesarrolladorBase):
     pass
-
-class DesarrolladorOut(DesarrolladorBase):
-    id: int
-
-    class Config:
-        from_attributes = True
