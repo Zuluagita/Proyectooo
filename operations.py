@@ -21,6 +21,7 @@ class DesarrolladorOut(BaseModel):
     tipo: str
     pais: str | None = None
     fundacion: int | None = None
+    estado: bool  # ✅ Se incluye el campo 'estado'
 
     class Config:
         from_attributes = True
@@ -28,6 +29,7 @@ class DesarrolladorOut(BaseModel):
 class VideojuegoOut(VideojuegoBase):
     id: int
     desarrollador: DesarrolladorOut | None = None
+    estado: bool  # ✅ Para poder filtrar videojuegos activos/inactivos
 
     class Config:
         from_attributes = True

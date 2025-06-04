@@ -3,89 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <title>Gestionar Desarrolladores - GamingDex</title>
-
   <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <style>
     body, button, input, select, textarea, .nes-text, .nes-btn {
       font-family: 'Press Start 2P', cursive;
       font-size: 12px;
     }
-
     body {
       background-color: #212121;
       color: #fff;
       padding: 2rem;
     }
-
     main {
       max-width: 880px;
       margin: auto;
     }
-
     .nes-container {
       margin-bottom: 2rem;
       box-shadow: 6px 6px 0 #000;
     }
-
-    .nes-btn:hover {
-      transform: scale(1.05);
-      transition: transform 0.2s ease-in-out;
-    }
-
     .volver {
       text-align: center;
       margin-top: 2rem;
     }
-
     .tarjeta {
+      margin-bottom: 1.5rem;
       background-color: white;
       color: black;
-      margin-bottom: 1.5rem;
     }
   </style>
 </head>
 <body>
   <main>
+    <!-- Formulario de Registro -->
     <section class="nes-container with-title is-dark">
-      <h1 class="title">🏢 Gestionar Desarrolladores</h1>
-
-      <form id="form-desarrollador" class="nes-container is-rounded" style="margin-bottom: 2rem;">
+      <h1 class="title">🕹️ Gestionar Desarrolladores</h1>
+      <form id="form-desarrollador">
+        <input type="hidden" id="desarrollador_id">
         <div class="nes-field">
           <label for="nombre">Nombre</label>
           <input type="text" id="nombre" class="nes-input" required>
         </div>
-
         <div class="nes-field">
           <label for="tipo">Tipo</label>
-          <input type="text" id="tipo" class="nes-input" placeholder="Ej: Independiente o Corporativo" required>
+          <input type="text" id="tipo" class="nes-input" placeholder="Ej: Independiente o Corporativo">
         </div>
-
         <div class="nes-field">
           <label for="pais">País</label>
           <input type="text" id="pais" class="nes-input">
         </div>
-
         <div class="nes-field">
           <label for="fundacion">Año de fundación</label>
           <input type="number" id="fundacion" class="nes-input">
         </div>
-
-        <button type="submit" class="nes-btn is-success" style="margin-top: 1rem;">Registrar Desarrollador</button>
+        <button type="submit" class="nes-btn is-success" style="margin-top: 1.5rem;">Registrar Desarrollador</button>
       </form>
+    </section>
 
-      <div id="lista-desarrolladores">
-        <!-- Se cargan desde JS -->
+    <!-- Lista de Desarrolladores -->
+    <section class="nes-container with-title is-dark">
+      <h2 class="title">📋 Lista de Desarrolladores</h2>
+      <div id="contenedor-desarrolladores">
+        <!-- Aquí se insertan las tarjetas desde JS -->
       </div>
     </section>
 
+    <!-- Botón de regreso -->
     <div class="volver">
       <a href="/" class="nes-btn is-warning">🏠 Volver al Inicio</a>
     </div>
   </main>
-
   <script src="/static/js/desarrolladores.js"></script>
 </body>
 </html>
