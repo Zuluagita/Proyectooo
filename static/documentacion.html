@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación - GamingDex</title>
+  <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body, button, input, select, textarea, .nes-text, .nes-btn {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    body {
+      background-color: #212121;
+      color: #fff;
+      padding: 2rem;
+    }
+
+    main {
+      max-width: 880px;
+      margin: auto;
+    }
+
+    .nes-container {
+      margin-bottom: 2rem;
+      box-shadow: 6px 6px 0 #000;
+    }
+
+    .title {
+      text-align: left;
+    }
+
+    .nes-table {
+      background: white;
+      color: black;
+      margin-top: 1rem;
+    }
+
+    .nes-table th, .nes-table td {
+      font-size: 10px;
+    }
+
+    .volver {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    img.diagram {
+      width: 100%;
+      image-rendering: pixelated;
+      border: 4px solid #fff;
+    }
+
+    .nes-text pre {
+      font-size: 10px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- Introducción -->
+    <section class="nes-container with-title is-dark">
+      <h1 class="title">🟢 Documentación del Proyecto</h1>
+      <p class="nes-text">
+        Aquí encontrarás información sobre los endpoints, modelos y lógica general del sistema GamingDex.
+      </p>
+    </section>
+    <!-- Casos de Uso -->
+<section class="nes-container with-title is-dark">
+  <h2 class="title">🎯 Casos de Uso</h2>
+  <table class="nes-table is-bordered is-centered" style="background: white; color: black;">
+    <thead>
+      <tr>
+        <th>🆔</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><i class="nes-icon star is-small"></i></td>
+        <td>Registrar un nuevo videojuego con su información completa</td>
+      </tr>
+      <tr>
+        <td><i class="nes-icon trophy is-small"></i></td>
+        <td>Visualizar todos los videojuegos activos registrados</td>
+      </tr>
+      <tr>
+        <td><i class="nes-icon coin is-small"></i></td>
+        <td>Filtrar videojuegos por título o género</td>
+      </tr>
+      <tr>
+        <td><i class="nes-icon like is-small"></i></td>
+        <td>Editar la información de un videojuego existente</td>
+      </tr>
+      <tr>
+        <td><i class="nes-icon close is-small"></i></td>
+        <td>Desactivar (eliminar lógicamente) un videojuego</td>
+      </tr>
+      <tr>
+        <td><i class="nes-icon heart is-small"></i></td>
+        <td>Registrar un desarrollador con datos básicos</td>
+      </tr>
+      <tr>
+        <td><i class="nes-icon star is-small"></i></td>
+        <td>Actualizar los datos de un desarrollador existente</td>
+      </tr>
+      <tr>
+        <td><i class="nes-icon close is-small"></i></td>
+        <td>Desactivar un desarrollador sin eliminar sus videojuegos</td>
+      </tr>
+      <tr>
+        <td><i class="nes-icon trophy is-small"></i></td>
+        <td>Consultar los videojuegos con su desarrollador asociado</td>
+      </tr>
+      <tr>
+        <td><i class="nes-icon like is-small"></i></td>
+        <td>Consultar desarrolladores activos desde el panel de gestión</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+    <!-- Modelos de Datos -->
+    <section class="nes-container with-title is-dark">
+      <h2 class="title">🧬 Modelos de Datos</h2>
+      <table class="nes-table is-bordered is-centered">
+        <thead>
+          <tr>
+            <th>Entidad</th>
+            <th>Campos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🎮 Videojuego</td>
+            <td>id, título, género, precio, calificación, desarrollador_id, estado</td>
+          </tr>
+          <tr>
+            <td>🏢 Desarrollador</td>
+            <td>id, nombre, tipo, país, fundación, estado</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Esquemas Pydantic -->
+    <section class="nes-container with-title is-dark">
+      <h2 class="title">✳️ Esquemas Pydantic</h2>
+      <pre class="nes-text">
+VideojuegoBase: compartido por Create, Update, Out
+VideojuegoCreate: hereda de Base (solo entrada)
+VideojuegoUpdate: igual a Create pero para PUT
+VideojuegoOut: incluye relación a DesarrolladorOut
+DesarrolladorBase/Create/Update/Out: estructuras análogas
+      </pre>
+    </section>
+
+    <!-- Internos SQLAlchemy -->
+    <section class="nes-container with-title is-dark">
+      <h2 class="title">🛠 Internos SQLAlchemy</h2>
+      <p class="nes-text">
+        Los modelos heredan de <code>sqlalchemy.orm.declarative_base()</code> y se vinculan mediante <code>relationship</code> para reflejar dependencias ORM.<br><br>
+        Se emplea también <code>joinedload()</code> para cargar el desarrollador cuando se consulta un videojuego.
+      </p>
+    </section>
+
+    <!-- Diagrama Relacional -->
+    <section class="nes-container with-title is-dark">
+      <h2 class="title">📍 Diagrama Relacional</h2>
+      <img src="/static/img/diagrama-modelos.png" alt="Diagrama de clases" class="diagram">
+    </section>
+    <section class="nes-container with-title is-dark">
+      <h1 class="title">📐 Diseño del Proyecto</h1>
+      <p class="nes-text">
+        A continuación se presentan los elementos visuales que respaldan el diseño del sistema GamingDex.
+      </p>
+    </section>
+    <!-- Endpoints -->
+    <section class="nes-container with-title is-dark">
+      <h2 class="title">🔷 Endpoints Principales</h2>
+      <table class="nes-table is-bordered is-centered">
+        <thead>
+          <tr>
+            <th>Método</th>
+            <th>Ruta</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>GET</td><td>/videojuegos</td><td>Lista de videojuegos activos</td></tr>
+          <tr><td>POST</td><td>/videojuegos</td><td>Registrar nuevo videojuego</td></tr>
+          <tr><td>PUT</td><td>/videojuegos/{id}</td><td>Actualizar videojuego</td></tr>
+          <tr><td>DELETE</td><td>/videojuegos/{id}</td><td>Desactivar videojuego</td></tr>
+          <tr><td>GET</td><td>/desarrolladores</td><td>Lista de desarrolladores activos</td></tr>
+          <tr><td>POST</td><td>/desarrolladores</td><td>Registrar desarrollador</td></tr>
+          <tr><td>PUT</td><td>/desarrolladores/{id}</td><td>Actualizar desarrollador</td></tr>
+          <tr><td>DELETE</td><td>/desarrolladores/{id}</td><td>Desactivar desarrollador</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Diagrama de Clases -->
+    <section class="nes-container with-title is-dark">
+      <h2 class="title">📊 Diagrama de Clases</h2>
+      <img src="/static/img/diagrama-clases.png" alt="Diagrama de Clases" class="diagram">
+    </section>
+
+    <!-- Wireframes -->
+    <section class="nes-container with-title is-dark">
+      <h2 class="title">🖼️ Wireframes</h2>
+      <img src="/static/img/wireframe-1.png" alt="Wireframe 1" class="diagram">
+      <img src="/static/img/wireframe-2.png" alt="Wireframe 2" class="diagram">
+    </section>
+
+    <!-- Mockups -->
+    <section class="nes-container with-title is-dark">
+      <h2 class="title">🎨 Mockup</h2>
+      <img src="/static/img/mockup-1.png" alt="Mockup 1" class="diagram">
+    </section>
+
+    <!-- Botón volver -->
+    <div class="volver">
+      <a href="/" class="nes-btn is-warning">🏠 Volver al Inicio</a>
+    </div>
+  </main>
+</body>
+</html>

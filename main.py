@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi import HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -55,3 +56,13 @@ def buscar():
 @app.get("/desarrolladores", response_class=FileResponse)
 def gestionar_dev():
     return FileResponse(os.path.join(static_dir, "desarrolladores.html"))
+@app.get("/documentacion", response_class=FileResponse)
+def ver_documentacion():
+    return FileResponse(os.path.join(static_dir, "documentacion.html"))
+
+@app.get("/diseno", response_class=FileResponse)
+def ver_diseno():
+    file_path = os.path.join(static_dir, "diseno.html")
+    if not os.path.exists(file_path):
+        raise HTTPException(status_code=404, detail="Archivo no encontrado")
+    return FileResponse(file_path)
